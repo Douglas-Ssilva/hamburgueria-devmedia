@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>United Burguer - Sua majestade, o Hambúrguer</title>
+
+    <h:outputStylesheet library="css" name="stylesheet.css"/>
+    <h:outputScript library="javax.faces" name="jsf.js"/>
+</h:head>
+<h:body>
+    <header>
+        <div class="background-hamburger">
+            <nav>
+                <div class="logo">
+                    <a href="#" title="United Burger">
+                        <h:graphicImage library="assets" name="logo-horizontal.png" alt="UnitedBurger"/>
+                    </a>
+                </div>
+            </nav>
+
+            <h1>Sua majestade, o Hambúrguer</h1>
+
+            <div class="icon-mouse">
+                <h:graphicImage library="assets" name="mouse.png" alt="Save the Burgers"/>
+            </div>
+        </div>
+
+        <div class="middle">
+            <div class="banner banner-right"/>
+            <div class="banner banner-left"/>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <div class="content">
+                <h:form id="contato">
+                    <div class="alert">
+                        <h:messages id="mensagem-global" globalOnly="true"/>
+                    </div>
+
+                    <div>
+                        <h:outputLabel for="email">Cadastre-se para o lançamento:</h:outputLabel>
+
+                        <h:inputText id="email" styleClass="control" binding="#{email}"
+                                     value="#{contatoBean.contato.email}"/>
+
+                        <div class="alert">
+                            <h:message id="mensagem-de-validacao-de-email" styleClass="#{email.valid ? '' : 'error'}" for="email"/>
+                        </div>
+                    </div>
+
+                    <div class="checkbox">
+                        <h:selectBooleanCheckbox value="#{contatoBean.receberNotificacao}"/>
+                        Desejo receber e-mails sobre promoções e serviços da United Burger e de seus parceiros
+                    </div>
+
+                    <h:commandButton value="Enviar" actionListener="#{contatoBean.cadastrar}" styleClass="btn btn-enviar">
+                        <f:ajax execute="@form" render="@all"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h:graphicImage library="assets" name="logo-vertical.png" alt="UnitedWord"/>
+        <p>todos juntos por um Hambúrguer melhor</p>
+    </footer>
+</h:body>
+</html>
